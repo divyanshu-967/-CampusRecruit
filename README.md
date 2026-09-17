@@ -1,4 +1,7 @@
 # CampusRecruit
+**🚀 Live Demo:** [https://campusrecruit.onrender.com/](https://campusrecruit.onrender.com/)
+
+A full-stack web application built for the GDG NSUT Task 2 (Track B). This platform streamlines...
 
 A full-stack web application built for the GDG NSUT Task 2 (Track B). This platform streamlines the college society recruitment process, allowing students to explore societies and apply, while giving admins a dedicated dashboard to manage applications.
 
