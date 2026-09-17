@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block title %}Apply for {{ society.name }} - CampusRecruit{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center py-4">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border">
+            <div class="card-header bg-white pt-4 pb-3 border-0">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="badge 
+                        {% if society.category == 'Tech' %}badge-tech
+                        {% elif society.category == 'Cultural' %}badge-cultural
+                        {% elif society.category == 'Sports' %}badge-sports
+                        {% elif society.category == 'Arts' %}badge-arts
+                        {% else %}bg-secondary{% endif %}">
+                        {{ society.category }}
+                    </span>
+                    <small class="text-muted"><i class="bi bi-person-badge me-1"></i>Admin: {{ society.admin.name }}</small>
+                </div>
+                <h3 class="fw-bold mt-2 text-dark">{{ society.name }}</h3>
+                <p class="text-secondary small mb-0">{{ society.description }}</p>
+            </div>
+
+            <div class="card-body pt-0">
+                <hr class="mt-0 mb-4">
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-file-earmark-text text-primary me-1"></i> Submit Recruitment Application
+                </h5>
+
+                <form method="POST" action="{{ url_for('apply', society_id=society.id) }}">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-semibold">Applicant Name</label>
+                        <input type="text" class="form-control" value="{{ current_user.name }}" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-semibold">Applicant Email</label>
+                        <input type="email" class="form-control" value="{{ current_user.email }}" disabled>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="role_applied_for" class="form-label fw-semibold">Role Applied For <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="role_applied_for" name="role_applied_for" placeholder="e.g., Frontend Developer, Event Coordinator, Graphic Designer" required autofocus>
+                        <div class="form-text">Specify the position or team you wish to join within the society.</div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="bi bi-send-fill me-1"></i> Submit Application
+                        </button>
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %}403 Forbidden - Access Denied{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center py-5">
+    <div class="col-md-7 col-lg-6 text-center">
+        <div class="card shadow-sm border p-4">
+            <div class="card-body">
+                <div class="mb-3">
+                    <span class="badge bg-danger p-3 rounded-circle">
+                        <i class="bi bi-shield-slash fs-1 text-white"></i>
+                    </span>
+                </div>
+                <h1 class="display-6 fw-bold text-danger">403 - Access Forbidden</h1>
+                <p class="lead text-secondary mt-3">
+                    You do not have administrative privileges to access this page.
+                </p>
+                <p class="text-muted small">
+                    This section is restricted strictly to designated <strong>Society Admins</strong>. Server-side role-based access control (RBAC) has blocked this request.
+                </p>
+                <hr class="my-4">
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                        <i class="bi bi-house-door me-1"></i> Return to Homepage
+                    </a>
+                    {% if current_user.is_authenticated and current_user.role == 'student' %}
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">
+                            <i class="bi bi-speedometer2 me-1"></i> Go to Student Dashboard
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
